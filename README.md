@@ -225,7 +225,3 @@ We welcome contributions! Please follow these steps:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-N'hésite pas à adapter ce ReadMe selon les spécificités et évolutions de ton projet. Tu peux ajouter plus d'explications si nécessaire ou ajuster les sections selon tes besoins.
