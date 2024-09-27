@@ -122,12 +122,39 @@ struct ScannerView: UIViewControllerRepresentable {
 ### 4. Printing
 Documents are converted to PDFs for printing using **UIPrintInteractionController**:
 ```swift
-import UIKit
+func printDocument(document: Document) {
+    // Check if the document contains images
+    guard !document.images.isEmpty else {
+        print("Aucune image à imprimer")
+        return
+    }
 
-func printDocument(_ document: Document) {
-    let printController = UIPrintInteractionController.shared
-    printController.printingItem = documentToPDF(document)
-    printController.present(animated: true, completionHandler: nil)
+    // Create an array of UIImages from document data
+    let imagesToPrint = document.images.compactMap { $0.image }
+
+    // Generate a PDF from images
+    if let pdfURL = generatePDF(from: imagesToPrint) {
+        // Create a UIPrintInteractionController to handle printing
+        let printController = UIPrintInteractionController.shared
+
+        // Configure print information
+        let printInfo = UIPrintInfo(dictionary: nil)
+        printInfo.jobName = document.name
+        printInfo.outputType = .general
+        printController.printInfo = printInfo
+
+        // Provide the content to print (the PDF file)
+        if let pdfData = try? Data(contentsOf: pdfURL) {
+            printController.printingItem = pdfData
+        } else {
+            print("Erreur lors de la récupération des données du PDF")
+        }
+
+        // Show Print Dialog
+        printController.present(animated: true, completionHandler: nil)
+    } else {
+        print("Erreur lors de la génération du PDF pour l'impression")
+    }
 }
 ```
 
