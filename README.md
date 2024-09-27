@@ -108,14 +108,23 @@ class DocumentManager: ObservableObject {
 
 ### 2. Views
 
-- **DocumentsView**: Displays a list of documents, with options to scan or create new folders.
-- **DocumentDetailView**: Allows the user to view, rename, and manage individual documents.
+- **DocumentsView**: Displays a list of documents, with swipe actions to delete doc.
+- **DocumentDetailView**: Allows the user to view, rename, print, share and manage individual documents.
   
 Here’s how the document list is rendered:
 ```swift
 List {
-    ForEach(documents) { document in
-        DocumentRow(document: document)
+    ForEach(viewModel.documents) { document in
+        NavigationLink(value: document){
+            docRow(for: document)
+        }
+        .swipeActions(edge: .trailing) {
+            Button(role: .destructive, action: {
+                viewModel.deleteDoc(document)
+            }) {
+                Label("Delete", systemImage: "trash")
+            }
+        }
     }
 }
 ```
