@@ -95,13 +95,18 @@ final class Document {
 
 This model is saved using **SwiftData** to ensure fast and reliable persistence:
 ```swift
-@MainActor
-class DocumentManager: ObservableObject {
-    @Published var documents: [Document] = []
-    
-    func saveDocument(_ document: Document) {
-        // Logic to save document to SwiftData
+func scanDocSuccess(_ scannedImages: [UIImage]) {
+    let imageDataArray = scannedImages.map {
+        ImageData(imageData: $0.pngData()!)
     }
+
+    let doc = Document(
+        name: "Document",
+        images: imageDataArray,
+        date: Date()
+    )
+    modelContext.insert(doc)
+    fetchData()
 }
 ```
 
