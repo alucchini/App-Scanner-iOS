@@ -200,7 +200,32 @@ func printDocument(document: Document) {
 }
 ```
 
-### 5. Sharing
+### 5. PDF Generation
+Here is the function that allows you to generate a PDF with the scanned images in SwiftUI:
+```swift
+func generatePDF(from images: [UIImage]) -> URL? {
+    let pdfDocument = PDFDocument()
+
+    for (index, image) in images.enumerated() {
+        let pdfPage = PDFPage(image: image)
+        pdfDocument.insert(pdfPage!, at: index)
+    }
+
+    // Save the PDF to the temporary folder
+    let tempDirectory = FileManager.default.temporaryDirectory
+    let pdfURL = tempDirectory.appendingPathComponent(UUID().uuidString).appendingPathExtension("pdf")
+
+    do {
+        try pdfDocument.dataRepresentation()?.write(to: pdfURL)
+        return pdfURL
+    } catch {
+        print("Erreur lors de la génération du PDF : \(error)")
+        return nil
+    }
+}
+```
+
+### 6. Sharing
 Sharing is done via the native **ShareLink** in SwiftUI:
 ```swift
 ShareLink(item: document, preview: SharePreview("Document", image: previewImage))
