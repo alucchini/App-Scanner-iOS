@@ -74,12 +74,23 @@ This project is powered by:
 The primary model is `Document`, which includes:
 ```swift
 import SwiftData
+import UIKit
 
-struct Document: Identifiable {
-    var id: UUID
+@Model
+final class Document {
     var name: String
+    var images: [ImageData]
     var date: Date
-    var pages: [ImageData]
+
+    init(name: String, images: [ImageData], date: Date) {
+        self.name = name
+        self.images = images
+        self.date = date
+    }
+
+    var preview: UIImage? {
+        return images.first?.image
+    }
 }
 ```
 
