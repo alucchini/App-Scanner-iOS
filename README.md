@@ -38,7 +38,7 @@ This project is powered by:
 ### Steps
 1. Clone the repo:
    ```bash
-   git clone https://github.com/your-username/scanner-pro.git
+   git clone https://github.com/alucchini/App-Scanner-iOS.git
    ```
 2. Open `ScannerPro.xcodeproj` in Xcode.
 3. Build and run the app on an iOS 17+ simulator or device.
