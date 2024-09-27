@@ -64,9 +64,9 @@ This project is powered by:
 
 ## Screenshots
 
-| Home Screen | Scan Document | Document List | Print Preview |
+| Home Screen | Scan Document | Document Detail | Print Preview |
 |-------------|---------------|---------------|---------------|
-| ![Home](path_to_home_screenshot) | ![Scan](path_to_scan_screenshot) | ![List](path_to_list_screenshot) | ![Print](path_to_print_screenshot) |
+| ![Home Screen](Screenshots/home.png) | ![Scan Document](Screenshots/scan.png) | ![Document Detail](Screenshots/detail.png) | ![Print Preview](Screenshots/print.png) |
 
 ## Code Overview
 
