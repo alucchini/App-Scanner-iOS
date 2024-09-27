@@ -52,7 +52,6 @@ This project is powered by:
 ### 2. Save and Organize Documents
    - Documents are saved locally using **SwiftData**.
    - Each document is tagged with metadata such as name, date, and format.
-   - Users can create folders and manage documents in a hierarchical view.
 
 ### 3. Print Documents
    - Integrated printing support to print scanned documents in high resolution.
